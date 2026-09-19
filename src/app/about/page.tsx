@@ -1,0 +1,301 @@
+import Image from "next/image";
+import Link from "next/link";
+import {
+  ChevronRight,
+  Home as HomeIcon,
+  ShieldCheck,
+  Tag,
+  Truck,
+  Headset,
+  Users,
+  CheckCircle2,
+  FileText,
+  Lock,
+  MessageCircle,
+  MapPin,
+  ArrowRight,
+  type LucideIcon,
+} from "lucide-react";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+
+const whyChooseUs: { Icon: LucideIcon; title: string; text: string }[] = [
+  {
+    Icon: ShieldCheck,
+    title: "100% Original Products",
+    text: "Every item is carefully selected so that only genuine, quality products reach your doorstep.",
+  },
+  {
+    Icon: Tag,
+    title: "Affordable Rates",
+    text: "Great quality without stretching your budget.",
+  },
+  {
+    Icon: Truck,
+    title: "Fast & Reliable Delivery",
+    text: "Quick, safe delivery nationwide, with Cash on Delivery available.",
+  },
+  {
+    Icon: Headset,
+    title: "Responsive Customer Support",
+    text: "Our team is available on WhatsApp and social media to help you at every step.",
+  },
+  {
+    Icon: Users,
+    title: "Reseller Program",
+    text: "Want to start your own business? Join the Ruman Mart reseller program and grow with us.",
+  },
+];
+
+const commitments = [
+  { Icon: CheckCircle2, text: "Offering only genuine and authentic products" },
+  { Icon: FileText, text: "Providing clear, accurate product descriptions" },
+  { Icon: Lock, text: "Protecting the privacy and security of your orders and data" },
+  { Icon: Headset, text: "Taking every piece of customer feedback seriously" },
+];
+
+const socialLinks = [
+  { Icon: MessageCircle, label: "Instagram", href: "#" },
+  { Icon: MessageCircle, label: "TikTok", href: "#" },
+  { Icon: MessageCircle, label: "Facebook", href: "#" },
+];
+
+export default function AboutPage() {
+  return (
+    <div className="flex min-h-screen w-full flex-col bg-[#f5f7fb] font-sans text-slate-800">
+      <Navbar />
+
+      <main className="flex-1">
+        {/* Hero */}
+        <section className="relative isolate overflow-hidden bg-[#031a3b]">
+          <Image
+            src="/hero.png"
+            alt="Ruman Mart products and top brands"
+            fill
+            priority
+            className="object-cover object-center"
+          />
+          <div className="relative mx-auto flex min-h-[280px] max-w-[1400px] items-center px-5 py-8 sm:min-h-[300px] md:min-h-[340px] md:px-8 lg:min-h-[380px]">
+            <div className="max-w-xl text-white">
+              <div className="mb-4 flex items-center gap-1.5 text-xs text-slate-300">
+                <Link href="/" className="flex items-center gap-1 hover:text-white">
+                  <HomeIcon size={12} aria-hidden="true" />
+                  Home
+                </Link>
+                <ChevronRight size={12} aria-hidden="true" />
+                <span className="text-slate-100">About Us</span>
+              </div>
+              <h1 className="text-3xl font-bold leading-none tracking-tight sm:text-4xl lg:text-5xl">
+                About <span className="text-[#19d5f2]">Us</span>
+              </h1>
+              <h2 className="mt-2 text-base font-semibold text-white sm:text-lg">
+                Original Products. Affordable Rates.
+              </h2>
+              <p className="mt-3 max-w-lg text-xs leading-5 text-slate-200 sm:text-sm">
+                At Ruman Mart, we believe in making your life easier with the
+                best products, great prices and a seamless shopping experience
+                - all in one place.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Welcome */}
+        <section className="bg-white py-10 sm:py-14">
+          <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+            <div className="max-w-3xl">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#0b75a5]">
+                Welcome to Ruman Mart
+              </p>
+              <h2 className="mt-2 text-2xl font-bold leading-tight text-[#0b1d45] sm:text-3xl">
+                Your Trusted Destination for
+                <span className="block text-[#19d5f2]">
+                  Everyday Essentials & Lifestyle Gadgets
+                </span>
+              </h2>
+              <p className="mt-4 text-sm leading-6 text-slate-500">
+                Ruman Mart is your trusted destination for household
+                essentials, lifestyle gadgets, and everyday products,
+                available online and in store. Our mission is simple: to
+                bring you original products at affordable rates, and to make
+                shopping easy, secure, and worry-free.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Our Story */}
+        <section className="bg-[#f5f7fb] py-10 sm:py-14">
+          <div className="mx-auto grid max-w-[1400px] grid-cols-1 gap-8 px-4 md:px-8 lg:grid-cols-2 lg:items-center lg:gap-12">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#0b75a5]">
+                Our Story
+              </p>
+              <h2 className="mt-2 text-2xl font-bold leading-tight text-[#0b1d45] sm:text-3xl">
+                Built with Passion,
+                <span className="block text-[#19d5f2]">For Your Convenience</span>
+              </h2>
+              <p className="mt-4 text-sm leading-6 text-slate-500">
+                Ruman Mart began with a simple idea: to put quality products
+                within reach of every home at a fair price. Starting in Hala,
+                we have grown from a single store into a presence across
+                Instagram, TikTok, Facebook, WhatsApp, and our flagship store
+                at Shakeel Shopping Centre, Tariq Road.
+              </p>
+              <p className="mt-3 text-sm leading-6 text-slate-500">
+                Today we proudly serve customers across Pakistan with a wide
+                and growing range of products.
+              </p>
+            </div>
+
+            <div className="relative overflow-hidden rounded-2xl bg-[#0b1d45] shadow-lg">
+              <img
+                src="/about.png"
+                alt="Ruman Mart workspace and products"
+                className="h-72 w-full object-cover sm:h-80"
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* Why Choose Us */}
+        <section className="bg-white py-10 sm:py-14">
+          <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+            <div className="max-w-2xl">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#0b75a5]">
+                Why Choose Ruman Mart?
+              </p>
+              <h2 className="mt-2 text-2xl font-bold text-[#0b1d45] sm:text-3xl">
+                More Than <span className="text-[#19d5f2]">Just a Store</span>
+              </h2>
+            </div>
+
+            <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+              {whyChooseUs.map(({ Icon, title, text }) => (
+                <div
+                  key={title}
+                  className="flex flex-col items-center gap-2 rounded-xl border border-slate-200 bg-[#f5f7fb] p-4 text-center shadow-sm sm:p-5"
+                >
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#e6f7fc] text-[#0b75a5]">
+                    <Icon size={20} aria-hidden="true" />
+                  </span>
+                  <p className="text-sm font-bold text-[#0b1d45]">{title}</p>
+                  <p className="text-xs leading-5 text-slate-500">{text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Our Vision */}
+        <section className="bg-[#0b1d45] py-10 sm:py-14">
+          <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+            <div className="max-w-3xl">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#19d5f2]">
+                Our Vision
+              </p>
+              <h2 className="mt-2 text-2xl font-bold text-white sm:text-3xl">
+                Where We&apos;re Headed
+              </h2>
+              <p className="mt-4 text-sm leading-6 text-slate-300">
+                We aim to become one of Pakistan&apos;s leading online
+                shopping brands, offering a smooth and dependable experience
+                to every customer. As we expand our product range, we will
+                keep the same standards of quality and service that our
+                customers trust.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Our Commitment */}
+        <section className="bg-[#f5f7fb] py-10 sm:py-14">
+          <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#0b75a5]">
+              Our Commitment
+            </p>
+            <h2 className="mt-2 text-2xl font-bold text-[#0b1d45] sm:text-3xl">
+              Standards We Never Compromise On
+            </h2>
+
+            <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {commitments.map(({ Icon, text }) => (
+                <div
+                  key={text}
+                  className="flex items-start gap-3 rounded-xl border border-slate-200 bg-white p-4 shadow-sm"
+                >
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#e6f7fc] text-[#0b75a5]">
+                    <Icon size={17} aria-hidden="true" />
+                  </span>
+                  <p className="text-sm leading-5 text-slate-600">{text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Connect With Us */}
+        <section className="bg-white py-10 sm:py-14">
+          <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+            <div className="grid grid-cols-1 gap-8 rounded-2xl bg-gradient-to-r from-[#031a3b] to-[#0b1d45] p-6 sm:p-10 lg:grid-cols-2 lg:items-center">
+              <div>
+                <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#19d5f2]">
+                  Connect With Us
+                </p>
+                <h2 className="mt-2 text-2xl font-bold text-white sm:text-3xl">
+                  Let&apos;s Stay in Touch
+                </h2>
+                <p className="mt-3 max-w-lg text-sm leading-6 text-slate-300">
+                  Follow us on Instagram, TikTok, and Facebook for new
+                  arrivals and special offers, or message us directly on
+                  WhatsApp. You are also welcome to visit our store at Shakeel
+                  Shopping Centre, Tariq Road. Your feedback matters to us.
+                </p>
+
+                <div className="mt-5 flex flex-wrap items-center gap-3">
+                  {socialLinks.map(({ Icon, label, href }) => (
+                    <Link
+                      key={label}
+                      href={href}
+                      className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-[#19c9ee] hover:text-white"
+                      aria-label={label}
+                    >
+                      <Icon size={18} aria-hidden="true" />
+                    </Link>
+                  ))}
+                  <Link
+                    href="#"
+                    className="inline-flex items-center gap-2 rounded-full bg-[#19c9ee] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#0db4d8]"
+                  >
+                    <MessageCircle size={16} aria-hidden="true" />
+                    Message on WhatsApp
+                  </Link>
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-3 rounded-xl bg-white/5 p-5 backdrop-blur-sm">
+                <div className="flex items-start gap-3">
+                  <MapPin size={20} className="mt-0.5 shrink-0 text-[#19d5f2]" aria-hidden="true" />
+                  <div>
+                    <p className="text-sm font-bold text-white">Visit Our Store</p>
+                    <p className="mt-1 text-sm text-slate-300">
+                      Shakeel Shopping Centre, Tariq Road
+                    </p>
+                  </div>
+                </div>
+                <Link
+                  href="/"
+                  className="mt-2 inline-flex items-center gap-2 self-start text-sm font-semibold text-[#19d5f2] hover:text-[#5be3fa]"
+                >
+                  Start Shopping <ArrowRight size={15} aria-hidden="true" />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <Footer />
+    </div>
+  );
+}
