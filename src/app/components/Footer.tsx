@@ -163,7 +163,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-2">
                 <MapPin size={16} className="shrink-0 text-[#1fb6e6]" />
-                <span>Lahore, Pakistan</span>
+                <span>hala, sindh, Pakistan</span>
               </li>
             </ul>
           </div>
