@@ -55,9 +55,9 @@ const commitments = [
 ];
 
 const socialLinks = [
-  { Icon: MessageCircle, label: "Instagram", href: "#" },
-  { Icon: MessageCircle, label: "TikTok", href: "#" },
-  { Icon: MessageCircle, label: "Facebook", href: "#" },
+  { Icon: MessageCircle, label: "WhatsApp", href: "https://wa.me/923041298136?text=Hello%20Ruman%20Mart" },
+  { Icon: MessageCircle, label: "WhatsApp", href: "https://wa.me/923041298136?text=Hello%20Ruman%20Mart" },
+  { Icon: MessageCircle, label: "WhatsApp", href: "https://wa.me/923041298136?text=Hello%20Ruman%20Mart" },
 ];
 
 export default function AboutPage() {
@@ -75,7 +75,7 @@ export default function AboutPage() {
             priority
             className="object-cover object-center"
           />
-          <div className="relative mx-auto flex min-h-[280px] max-w-[1400px] items-center px-5 py-8 sm:min-h-[300px] md:min-h-[340px] md:px-8 lg:min-h-[380px]">
+          <div className="relative mx-auto flex min-h-[240px] max-w-[1400px] items-center px-5 py-7 sm:min-h-[280px] md:min-h-[340px] md:px-8 lg:min-h-[380px]">
             <div className="max-w-xl text-white">
               <div className="mb-4 flex items-center gap-1.5 text-xs text-slate-300">
                 <Link href="/" className="flex items-center gap-1 hover:text-white">
@@ -264,7 +264,9 @@ export default function AboutPage() {
                     </Link>
                   ))}
                   <Link
-                    href="#"
+                    href="https://wa.me/923041298136?text=Hello%20Ruman%20Mart"
+                    target="_blank"
+                    rel="noreferrer"
                     className="inline-flex items-center gap-2 rounded-full bg-[#19c9ee] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#0db4d8]"
                   >
                     <MessageCircle size={16} aria-hidden="true" />

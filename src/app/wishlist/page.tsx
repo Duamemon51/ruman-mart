@@ -50,11 +50,11 @@ export default function WishlistPage() {
       <main className="flex-1">
         <section className="relative isolate overflow-hidden bg-[#031a3b]">
           <Image src="/hero.png" alt="Ruman Mart products and top brands" fill priority className="object-cover object-center" />
-          <div className="relative mx-auto flex min-h-[280px] max-w-[1400px] items-center px-5 py-8 sm:min-h-[300px] md:min-h-[340px] md:px-8 lg:min-h-[380px]">
+          <div className="relative mx-auto flex min-h-[240px] max-w-[1400px] items-center px-5 py-7 sm:min-h-[280px] md:min-h-[340px] md:px-8 lg:min-h-[380px]">
             <div className="max-w-2xl text-white">
               <div className="mb-4 flex items-center gap-1.5 text-xs text-slate-300"><Link href="/" className="flex items-center gap-1 hover:text-white"><HomeIcon size={12} aria-hidden="true" /> Home</Link><ChevronRight size={12} aria-hidden="true" /><span className="text-slate-100">Wishlist</span></div>
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#19d5f2] sm:text-sm">Saved for later</p>
-              <h1 className="mt-2 text-4xl font-bold leading-[1.05] sm:text-5xl">Your <span className="text-[#19d5f2]">Wishlist</span></h1>
+              <h1 className="mt-2 text-3xl font-bold leading-[1.05] sm:text-5xl">Your <span className="text-[#19d5f2]">Wishlist</span></h1>
               <p className="mt-4 max-w-xl text-sm leading-6 text-slate-200 sm:text-base">Keep the products you love close and come back when you&apos;re ready.</p>
             </div>
           </div>

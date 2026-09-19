@@ -330,7 +330,7 @@ export default function CartPage() {
               </Link>
             </div>
 
-            <div className="flex snap-x gap-4 overflow-x-auto pb-2 sm:grid sm:grid-cols-3 sm:overflow-visible lg:grid-cols-5">
+            <div className="scrollbar-hide flex snap-x gap-4 overflow-x-auto pb-2 sm:grid sm:grid-cols-3 sm:overflow-visible lg:grid-cols-5">
               {relatedProducts.map((item) => (
                 <div
                   key={item.name}

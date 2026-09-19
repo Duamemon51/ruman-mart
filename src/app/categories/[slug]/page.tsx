@@ -132,7 +132,7 @@ export default async function CategoryProductsPage({
             priority
             className="object-cover object-center"
           />
-          <div className="relative mx-auto flex min-h-[300px] max-w-[1400px] items-center px-5 py-10 sm:min-h-[340px] md:min-h-[380px] md:px-8">
+          <div className="relative mx-auto flex min-h-[240px] max-w-[1400px] items-center px-5 py-8 sm:min-h-[300px] md:min-h-[380px] md:px-8">
             <div className="absolute inset-x-5 top-0 flex items-center gap-1.5 py-4 text-sm text-slate-300 md:inset-x-8">
               <Link href="/" className="flex items-center gap-1 hover:text-white">
                 <HomeIcon size={14} aria-hidden="true" />
@@ -141,8 +141,8 @@ export default async function CategoryProductsPage({
               <ChevronRight size={14} className="text-slate-400" aria-hidden="true" />
               <span className="font-semibold text-white">{category.name}</span>
             </div>
-            <div className="max-w-2xl text-white">
-              <h1 className="text-4xl font-bold leading-[1.05] sm:text-5xl lg:text-6xl">
+            <div className="w-full min-w-0 max-w-xl text-white">
+              <h1 className="text-3xl font-bold leading-[1.05] sm:text-5xl lg:text-6xl">
                 {category.name}
                 <span className="block text-[#19d5f2]">
                   {category.heroTitle ?? "Made for You"}

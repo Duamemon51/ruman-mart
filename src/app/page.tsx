@@ -205,12 +205,12 @@ export default function Home() {
             priority
             className="object-cover object-center"
           />
-          <div className="relative mx-auto flex min-h-[360px] max-w-[1400px] items-center px-5 py-10 sm:min-h-[400px] md:min-h-[470px] md:px-8 lg:min-h-[520px]">
+          <div className="relative mx-auto flex min-h-[280px] max-w-[1400px] items-center px-5 py-8 sm:min-h-[360px] md:min-h-[470px] md:px-8 lg:min-h-[520px]">
             <div className="max-w-xl text-white">
               <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-slate-200 sm:text-sm">
                 Your one-stop shop
               </p>
-              <h1 className="text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
+              <h1 className="text-3xl font-bold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
                 Everything You Need
                 <span className="block text-[#19d5f2]">Under One Roof</span>
               </h1>
@@ -236,7 +236,7 @@ export default function Home() {
         {/* Categories */}
         <section className="border-b border-slate-200 bg-white py-7 sm:py-9">
           <div className="mx-auto max-w-[1400px] px-4 md:px-8">
-            <div className="flex snap-x gap-4 overflow-x-auto pb-2 sm:grid sm:grid-cols-3 sm:overflow-visible lg:grid-cols-6">
+            <div className="scrollbar-hide flex snap-x gap-4 overflow-x-auto pb-2 sm:grid sm:grid-cols-3 sm:overflow-visible lg:grid-cols-6">
               {categories.map(({ name, image }) => (
                 <a
                   key={name}
@@ -287,7 +287,7 @@ export default function Home() {
               </a>
             </div>
 
-            <div className="flex snap-x gap-4 overflow-x-auto pb-2 sm:grid sm:grid-cols-2 sm:overflow-visible lg:grid-cols-3 xl:grid-cols-6">
+            <div className="scrollbar-hide flex snap-x gap-4 overflow-x-auto pb-2 sm:grid sm:grid-cols-2 sm:overflow-visible lg:grid-cols-3 xl:grid-cols-6">
               {featuredProducts.map((product) => (
                 <div
                   key={product.name}

@@ -23,7 +23,7 @@ export default function ServicePage({ title, eyebrow, intro, sections }: Service
       <main className="flex-1">
         <section className="relative isolate overflow-hidden bg-[#031a3b]">
           <Image src="/hero.png" alt="Ruman Mart products and top brands" fill priority className="object-cover object-center" />
-          <div className="relative mx-auto flex min-h-[320px] max-w-[1400px] items-center px-5 py-10 sm:min-h-[360px] md:min-h-[400px] md:px-8">
+          <div className="relative mx-auto flex min-h-[240px] max-w-[1400px] items-center px-5 py-8 sm:min-h-[300px] md:min-h-[400px] md:px-8">
             <div className="max-w-2xl text-white">
               <div className="mb-5 inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-xs text-slate-200 backdrop-blur-sm">
                 <Link href="/" className="flex items-center gap-1 hover:text-white"><HomeIcon size={12} aria-hidden="true" /> Home</Link>
@@ -32,7 +32,7 @@ export default function ServicePage({ title, eyebrow, intro, sections }: Service
               </div>
               <div className="border-l-4 border-[#19d5f2] pl-5">
                 <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#19d5f2]">{eyebrow}</p>
-                <h1 className="mt-2 text-4xl font-bold leading-tight sm:text-5xl">{title}</h1>
+                <h1 className="mt-2 text-3xl font-bold leading-tight sm:text-5xl">{title}</h1>
                 <p className="mt-4 max-w-xl text-sm leading-6 text-slate-200 sm:text-base">{intro}</p>
               </div>
             </div>

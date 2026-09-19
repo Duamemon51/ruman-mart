@@ -147,14 +147,14 @@ export default function ProductDetailsPage() {
           {/* Main product section */}
           <div className="grid grid-cols-1 gap-8 rounded-xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6 lg:grid-cols-2">
             {/* Gallery */}
-            <div className="flex gap-3">
-              <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <div className="scrollbar-hide flex max-w-full flex-row gap-2 overflow-x-auto sm:flex-col sm:overflow-visible">
                 {product.images.map((img, i) => (
                   <button
                     key={img}
                     type="button"
                     onClick={() => setActiveImage(i)}
-                    className={`flex h-16 w-16 shrink-0 items-center justify-center rounded-lg border-2 bg-[#f5f7fb] p-1.5 transition-colors ${
+                    className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-lg border-2 bg-[#f5f7fb] p-1.5 transition-colors sm:h-16 sm:w-16 ${
                       activeImage === i
                         ? "border-[#19c9ee]"
                         : "border-slate-200 hover:border-slate-300"
@@ -165,7 +165,7 @@ export default function ProductDetailsPage() {
                 ))}
               </div>
 
-              <div className="relative flex min-h-[420px] flex-1 items-center justify-center overflow-hidden rounded-xl bg-[#f5f7fb]">
+              <div className="relative flex min-h-[300px] flex-1 items-center justify-center overflow-hidden rounded-xl bg-[#f5f7fb] sm:min-h-[360px] lg:min-h-[420px]">
                 <WishlistButton product={{ ...product, image: product.images[0] }} />
                 <span className="absolute left-3 top-3 rounded-full bg-[#0b75a5] px-2.5 py-1 text-xs font-bold text-white">
                   -{product.discount}%
@@ -173,7 +173,7 @@ export default function ProductDetailsPage() {
                 <img
                   src={product.images[activeImage]}
                   alt={product.name}
-                  className="h-full min-h-[420px] w-full object-cover"
+                  className="h-full min-h-[300px] w-full object-cover sm:min-h-[360px] lg:min-h-[420px]"
                 />
               </div>
             </div>
@@ -464,7 +464,7 @@ export default function ProductDetailsPage() {
               </Link>
             </div>
 
-            <div className="flex snap-x gap-4 overflow-x-auto pb-2 sm:grid sm:grid-cols-3 sm:overflow-visible lg:grid-cols-5">
+            <div className="scrollbar-hide flex snap-x gap-4 overflow-x-auto pb-2 sm:grid sm:grid-cols-3 sm:overflow-visible lg:grid-cols-5">
               {relatedProducts.map((item) => (
                 <div
                   key={item.name}

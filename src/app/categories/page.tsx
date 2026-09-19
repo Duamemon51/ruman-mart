@@ -61,7 +61,7 @@ export default function CategoriesPage() {
             priority
             className="object-cover object-center"
           />
-          <div className="relative mx-auto flex min-h-[300px] max-w-[1400px] items-center px-5 py-10 sm:min-h-[340px] md:min-h-[380px] md:px-8">
+          <div className="relative mx-auto flex min-h-[240px] max-w-[1400px] items-center px-5 py-8 sm:min-h-[300px] md:min-h-[380px] md:px-8">
             <div className="absolute inset-x-5 top-0 flex items-center gap-1.5 py-4 text-sm text-slate-300 md:inset-x-8">
               <Link href="/" className="flex items-center gap-1 hover:text-white">
                 <HomeIcon size={14} aria-hidden="true" />
@@ -70,15 +70,15 @@ export default function CategoriesPage() {
               <ChevronRight size={14} className="text-slate-400" aria-hidden="true" />
               <span className="font-semibold text-white">Categories</span>
             </div>
-            <div className="max-w-2xl text-white">
+            <div className="w-full min-w-0 max-w-xl text-white">
               <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-[#19d5f2] sm:text-sm">
                 Shop by Categories
               </p>
-              <h1 className="text-4xl font-bold leading-[1.05] sm:text-5xl">
+              <h1 className="max-w-full text-2xl font-bold leading-[1.08] sm:text-5xl">
                 Explore Our
                 <span className="block text-[#19d5f2]">Product Categories</span>
               </h1>
-              <p className="mt-5 max-w-xl text-sm leading-6 text-slate-200 sm:text-base">
+              <p className="mt-4 max-w-full text-sm leading-6 text-slate-200 sm:mt-5 sm:text-base">
                 Find exactly what you need from our wide range of quality
                 products. Shop smarter, live better!
               </p>

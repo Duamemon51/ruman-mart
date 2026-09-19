@@ -45,7 +45,7 @@ export default function Navbar({ cartCount = 3 }) {
   };
 
   return (
-    <header className="w-full border-b-2 border-[#1fb6e6] bg-[radial-gradient(circle_at_top,#173d7a_0%,#001B42_55%,#00132f_100%)] text-white shadow-[0_2px_12px_rgba(0,0,0,0.12)]">
+    <header className="sticky top-0 z-50 w-full border-b-2 border-[#1fb6e6] bg-[radial-gradient(circle_at_top,#173d7a_0%,#001B42_55%,#00132f_100%)] text-white shadow-[0_2px_12px_rgba(0,0,0,0.12)]">
       {/* Single grid controls logo / search+nav / actions so the nav row
           lines up exactly under the search bar's left edge. */}
       <div className="mx-auto grid max-w-[1400px] grid-cols-[auto_1fr_auto] items-center gap-x-4 px-4 py-3 md:gap-x-8 md:px-8">
@@ -117,7 +117,7 @@ export default function Navbar({ cartCount = 3 }) {
         {/* Desktop nav row — sits in the same column as search (col 2),
             so its left edge matches the search bar's left edge. */}
         <nav className="col-start-2 hidden md:block">
-          <ul className="flex items-center justify-center gap-8 pt-2 text-sm">
+          <ul className="flex items-center justify-center gap-4 pt-2 text-xs lg:gap-8 lg:text-sm">
             {navLinks.map((link) => {
               const active = pathname === link.href;
               return (

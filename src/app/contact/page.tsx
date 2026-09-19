@@ -69,7 +69,7 @@ export default function ContactPage() {
             priority
             className="object-cover object-center"
           />
-          <div className="relative mx-auto flex min-h-[280px] max-w-[1400px] items-center px-5 py-8 sm:min-h-[300px] md:min-h-[340px] md:px-8 lg:min-h-[380px]">
+          <div className="relative mx-auto flex min-h-[240px] max-w-[1400px] items-center px-5 py-7 sm:min-h-[280px] md:min-h-[340px] md:px-8 lg:min-h-[380px]">
             <div className="max-w-xl text-white">
               <div className="mb-4 flex items-center gap-1.5 text-xs text-slate-300">
                 <Link href="/" className="flex items-center gap-1 hover:text-white">
@@ -244,7 +244,9 @@ export default function ContactPage() {
                     </p>
                   </div>
                   <Link
-                    href="#"
+                    href="https://wa.me/923041298136?text=Hello%20Ruman%20Mart"
+                    target="_blank"
+                    rel="noreferrer"
                     className="inline-flex shrink-0 items-center gap-1 rounded-full bg-emerald-500 px-3 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-emerald-600"
                   >
                     Chat Now
