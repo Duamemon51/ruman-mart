@@ -22,7 +22,8 @@ export default function ServicePage({ title, eyebrow, intro, sections }: Service
       <Navbar />
       <main className="flex-1">
         <section className="relative isolate overflow-hidden bg-[#031a3b]">
-          <Image src="/hero.png" alt="Ruman Mart products and top brands" fill priority className="object-cover object-center" />
+          <Image src="/hero.png" alt="Ruman Mart products and top brands" fill priority sizes="100vw" quality={100} className="scale-[1.12] object-cover object-center brightness-90 saturate-110 md:scale-[1.06] lg:scale-[1.02]" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#031a3b]/90 via-[#031a3b]/45 to-transparent sm:from-[#031a3b]/75 sm:via-[#031a3b]/35 sm:to-transparent" />
           <div className="relative mx-auto flex min-h-[240px] max-w-[1400px] items-center px-5 py-8 sm:min-h-[300px] md:min-h-[400px] md:px-8">
             <div className="max-w-2xl text-white">
               <div className="mb-5 inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-xs text-slate-200 backdrop-blur-sm">

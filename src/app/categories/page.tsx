@@ -59,8 +59,11 @@ export default function CategoriesPage() {
             alt="Ruman Mart products and top brands"
             fill
             priority
-            className="object-cover object-center"
+            sizes="100vw"
+            quality={100}
+            className="scale-[1.12] object-cover object-center brightness-90 saturate-110 md:scale-[1.06] lg:scale-[1.02]"
           />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#031a3b]/90 via-[#031a3b]/45 to-transparent sm:from-[#031a3b]/75 sm:via-[#031a3b]/35 sm:to-transparent" />
           <div className="relative mx-auto flex min-h-[240px] max-w-[1400px] items-center px-5 py-8 sm:min-h-[300px] md:min-h-[380px] md:px-8">
             <div className="absolute inset-x-5 top-0 flex items-center gap-1.5 py-4 text-sm text-slate-300 md:inset-x-8">
               <Link href="/" className="flex items-center gap-1 hover:text-white">

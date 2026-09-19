@@ -203,8 +203,11 @@ export default function Home() {
             alt="Ruman Mart products and top brands"
             fill
             priority
-            className="object-cover object-center"
+            sizes="100vw"
+            quality={100}
+            className="scale-[1.12] object-cover object-center brightness-90 saturate-110 md:scale-[1.06] lg:scale-[1.02]"
           />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#031a3b]/90 via-[#031a3b]/45 to-transparent sm:from-[#031a3b]/75 sm:via-[#031a3b]/35 sm:to-transparent" />
           <div className="relative mx-auto flex min-h-[280px] max-w-[1400px] items-center px-5 py-8 sm:min-h-[360px] md:min-h-[470px] md:px-8 lg:min-h-[520px]">
             <div className="max-w-xl text-white">
               <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-slate-200 sm:text-sm">

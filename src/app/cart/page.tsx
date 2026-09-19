@@ -129,7 +129,9 @@ export default function CartPage() {
             alt="Ruman Mart products and top brands"
             fill
             priority
-            className="object-cover object-center"
+            sizes="100vw"
+            quality={100}
+            className="scale-[1.12] object-cover object-center brightness-90 saturate-110 md:scale-[1.06] lg:scale-[1.02]"
           />
           <div className="relative mx-auto flex min-h-[280px] max-w-[1400px] items-center px-5 py-8 sm:min-h-[300px] md:min-h-[340px] md:px-8 lg:min-h-[380px]">
             <div className="w-full max-w-xl text-white">
