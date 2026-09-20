@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import {
   ChevronRight,
@@ -57,24 +56,88 @@ export default function ContactPage() {
 
   return (
     <div className="flex min-h-screen w-full flex-col bg-[#f5f7fb] font-sans text-slate-800">
+      <style>{`
+        @keyframes fadeInUp {
+          from { opacity: 0; transform: translateY(18px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes floatBlob {
+          0%, 100% { transform: translate(0, 0) scale(1); }
+          50% { transform: translate(20px, -25px) scale(1.08); }
+        }
+        @keyframes floatBlobSlow {
+          0%, 100% { transform: translate(0, 0) scale(1); }
+          50% { transform: translate(-25px, 20px) scale(1.05); }
+        }
+        @keyframes pulseDot {
+          0%, 100% { opacity: 1; transform: scale(1); }
+          50% { opacity: 0.5; transform: scale(1.3); }
+        }
+
+        .anim-fade-up {
+          opacity: 0;
+          animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .anim-blob-1 { animation: floatBlob 9s ease-in-out infinite; }
+        .anim-blob-2 { animation: floatBlobSlow 11s ease-in-out infinite; }
+        .anim-pulse-dot { animation: pulseDot 1.8s ease-in-out infinite; }
+
+        .contact-card {
+          transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+        }
+        .contact-card:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 12px 28px -8px rgba(11, 117, 165, 0.18);
+          border-color: #19c9ee;
+        }
+
+        .contact-input:focus-within svg {
+          color: #0b75a5;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .anim-fade-up, .anim-blob-1, .anim-blob-2, .anim-pulse-dot {
+            animation: none !important;
+            opacity: 1 !important;
+            transform: none !important;
+          }
+          .contact-card:hover { transform: none; }
+        }
+      `}</style>
+
       <Navbar />
 
       <main className="flex-1">
         {/* Hero */}
         <section className="relative isolate overflow-hidden bg-[#031a3b]">
-          <Image
-            src="/hero.png"
-            alt="Ruman Mart products and top brands"
-            fill
-            priority
-            sizes="100vw"
-            quality={100}
-            className="scale-[1.12] object-cover object-center brightness-90 saturate-110 md:scale-[1.06] lg:scale-[1.02]"
+          <div
+            className="absolute inset-0 bg-[url('/mobile-hero.png')] bg-cover bg-center sm:hidden"
+            aria-hidden="true"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#031a3b]/90 via-[#031a3b]/45 to-transparent sm:from-[#031a3b]/75 sm:via-[#031a3b]/35 sm:to-transparent" />
-          <div className="relative mx-auto flex min-h-[240px] max-w-[1400px] items-center px-5 py-7 sm:min-h-[280px] md:min-h-[340px] md:px-8 lg:min-h-[380px]">
+          <div
+            className="absolute inset-0 hidden bg-[url('/hero.png')] bg-cover bg-center sm:block"
+            aria-hidden="true"
+          />
+          {/* Overlay */}
+          <div className="absolute inset-0 bg-[#031a3b]/50" aria-hidden="true" />
+
+          {/* Floating gradient blobs */}
+          <div
+            className="anim-blob-1 pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-[#19c9ee]/25 blur-3xl"
+            aria-hidden="true"
+          />
+          <div
+            className="anim-blob-2 pointer-events-none absolute -bottom-20 left-1/4 h-72 w-72 rounded-full bg-[#0b75a5]/20 blur-3xl"
+            aria-hidden="true"
+          />
+
+          <div className="relative mx-auto flex min-h-[400px] max-w-[1400px] items-center px-5 py-7 sm:min-h-[280px] md:min-h-[340px] md:px-8 lg:min-h-[380px]">
             <div className="max-w-xl text-white">
-              <div className="mb-4 flex items-center gap-1.5 text-xs text-slate-300">
+              {/* Breadcrumb - mobile par hidden */}
+              <div
+                className="anim-fade-up mb-4 hidden items-center gap-1.5 text-xs text-slate-300 sm:flex"
+                style={{ animationDelay: "0ms" }}
+              >
                 <Link href="/" className="flex items-center gap-1 hover:text-white">
                   <HomeIcon size={12} aria-hidden="true" />
                   Home
@@ -82,18 +145,34 @@ export default function ContactPage() {
                 <ChevronRight size={12} aria-hidden="true" />
                 <span className="text-slate-100">Contact Us</span>
               </div>
-              <h1 className="text-3xl font-bold leading-none tracking-tight sm:text-4xl lg:text-5xl">
+
+              <h1
+                className="anim-fade-up text-[1.55rem] font-bold leading-none tracking-tight sm:text-4xl lg:text-5xl"
+                style={{ animationDelay: "80ms" }}
+              >
                 Contact <span className="text-[#19d5f2]">Us</span>
               </h1>
-              <h2 className="mt-2 text-base font-semibold text-white sm:text-lg">
+
+              <h2
+                className="anim-fade-up mt-2 flex items-center gap-2 text-base font-semibold text-white sm:text-lg"
+                style={{ animationDelay: "180ms" }}
+              >
+                <span className="anim-pulse-dot h-1.5 w-1.5 shrink-0 rounded-full bg-[#19d5f2]" aria-hidden="true" />
                 We&apos;re Here to Help You
               </h2>
-              <p className="mt-3 max-w-lg text-xs leading-5 text-slate-200 sm:text-sm">
+
+              <p
+                className="anim-fade-up mt-3 max-w-lg text-xs leading-5 text-slate-200 sm:text-sm"
+                style={{ animationDelay: "280ms" }}
+              >
                 Have a question or need assistance? Reach out to the Ruman Mart
                 team and we&apos;ll be happy to help.
               </p>
 
-              <div className="mt-5 flex flex-wrap gap-4 text-xs text-slate-200 sm:text-sm">
+              <div
+                className="anim-fade-up mt-5 flex flex-wrap gap-4 text-xs text-slate-200 sm:text-sm"
+                style={{ animationDelay: "380ms" }}
+              >
                 <span className="flex items-center gap-1.5">
                   <Phone size={14} className="text-[#19d5f2]" aria-hidden="true" />
                   Call us
@@ -115,7 +194,10 @@ export default function ContactPage() {
           {/* Form + contact info */}
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1.6fr_1fr]">
             {/* Send Us a Message */}
-            <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm sm:p-7">
+            <div
+              className="contact-card anim-fade-up rounded-xl border border-slate-200 bg-white p-5 shadow-sm sm:p-7"
+              style={{ animationDelay: "0ms" }}
+            >
               <h2 className="text-xl font-bold text-[#0b1d45] sm:text-2xl">
                 Send Us <span className="text-[#19d5f2]">a Message</span>
               </h2>
@@ -126,55 +208,55 @@ export default function ContactPage() {
 
               <form className="mt-6 flex flex-col gap-4">
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                  <div className="relative">
+                  <div className="contact-input relative">
                     <User
                       size={16}
-                      className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"
+                      className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 transition-colors"
                       aria-hidden="true"
                     />
                     <input
                       type="text"
                       placeholder="Your Name *"
-                      className="w-full rounded-lg border border-slate-200 py-2.5 pl-10 pr-3.5 text-sm focus:border-[#19c9ee] focus:outline-none focus:ring-2 focus:ring-[#19c9ee]/30"
+                      className="w-full rounded-lg border border-slate-200 py-2.5 pl-10 pr-3.5 text-sm transition-shadow focus:border-[#19c9ee] focus:outline-none focus:ring-2 focus:ring-[#19c9ee]/30"
                     />
                   </div>
-                  <div className="relative">
+                  <div className="contact-input relative">
                     <Mail
                       size={16}
-                      className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"
+                      className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 transition-colors"
                       aria-hidden="true"
                     />
                     <input
                       type="email"
                       placeholder="Your Email *"
-                      className="w-full rounded-lg border border-slate-200 py-2.5 pl-10 pr-3.5 text-sm focus:border-[#19c9ee] focus:outline-none focus:ring-2 focus:ring-[#19c9ee]/30"
+                      className="w-full rounded-lg border border-slate-200 py-2.5 pl-10 pr-3.5 text-sm transition-shadow focus:border-[#19c9ee] focus:outline-none focus:ring-2 focus:ring-[#19c9ee]/30"
                     />
                   </div>
                 </div>
 
-                <div className="relative">
+                <div className="contact-input relative">
                   <Phone
                     size={16}
-                    className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"
+                    className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 transition-colors"
                     aria-hidden="true"
                   />
                   <input
                     type="tel"
                     placeholder="Your Phone Number"
-                    className="w-full rounded-lg border border-slate-200 py-2.5 pl-10 pr-3.5 text-sm focus:border-[#19c9ee] focus:outline-none focus:ring-2 focus:ring-[#19c9ee]/30"
+                    className="w-full rounded-lg border border-slate-200 py-2.5 pl-10 pr-3.5 text-sm transition-shadow focus:border-[#19c9ee] focus:outline-none focus:ring-2 focus:ring-[#19c9ee]/30"
                   />
                 </div>
 
-                <div className="relative">
+                <div className="contact-input relative">
                   <Tag
                     size={16}
-                    className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"
+                    className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 transition-colors"
                     aria-hidden="true"
                   />
                   <select
                     value={selectedSubject}
                     onChange={(e) => setSelectedSubject(e.target.value)}
-                    className="w-full appearance-none rounded-lg border border-slate-200 py-2.5 pl-10 pr-8 text-sm text-slate-700 focus:border-[#19c9ee] focus:outline-none focus:ring-2 focus:ring-[#19c9ee]/30"
+                    className="w-full appearance-none rounded-lg border border-slate-200 py-2.5 pl-10 pr-8 text-sm text-slate-700 transition-shadow focus:border-[#19c9ee] focus:outline-none focus:ring-2 focus:ring-[#19c9ee]/30"
                   >
                     <option value="" disabled>
                       Select Subject *
@@ -192,34 +274,40 @@ export default function ContactPage() {
                   />
                 </div>
 
-                <div className="relative">
+                <div className="contact-input relative">
                   <MessageSquare
                     size={16}
-                    className="pointer-events-none absolute left-3.5 top-3.5 text-slate-400"
+                    className="pointer-events-none absolute left-3.5 top-3.5 text-slate-400 transition-colors"
                     aria-hidden="true"
                   />
                   <textarea
                     rows={5}
                     placeholder="Your Message *"
-                    className="w-full resize-none rounded-lg border border-slate-200 py-2.5 pl-10 pr-3.5 text-sm focus:border-[#19c9ee] focus:outline-none focus:ring-2 focus:ring-[#19c9ee]/30"
+                    className="w-full resize-none rounded-lg border border-slate-200 py-2.5 pl-10 pr-3.5 text-sm transition-shadow focus:border-[#19c9ee] focus:outline-none focus:ring-2 focus:ring-[#19c9ee]/30"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="mt-1 inline-flex items-center justify-center gap-2 rounded-lg bg-[#19c9ee] py-3 text-sm font-semibold text-white transition-colors hover:bg-[#0db4d8]"
+                  className="group mt-1 inline-flex items-center justify-center gap-2 rounded-lg bg-[#19c9ee] py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#0db4d8] hover:shadow-lg hover:shadow-[#19c9ee]/30"
                 >
-                  Send Message <Send size={16} aria-hidden="true" />
+                  Send Message
+                  <Send
+                    size={16}
+                    className="transition-transform duration-300 group-hover:translate-x-1"
+                    aria-hidden="true"
+                  />
                 </button>
               </form>
             </div>
 
             {/* Contact info sidebar */}
             <div className="flex flex-col gap-4">
-              {contactInfo.map(({ Icon, title, lines }) => (
+              {contactInfo.map(({ Icon, title, lines }, index) => (
                 <div
                   key={title}
-                  className="flex items-start gap-3 rounded-xl border border-slate-200 bg-white p-4 shadow-sm"
+                  className="contact-card anim-fade-up flex items-start gap-3 rounded-xl border border-slate-200 bg-white p-4 shadow-sm"
+                  style={{ animationDelay: `${index * 80}ms` }}
                 >
                   <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#e6f7fc] text-[#0b75a5]">
                     <Icon size={18} aria-hidden="true" />
@@ -235,7 +323,10 @@ export default function ContactPage() {
                 </div>
               ))}
 
-              <div className="flex items-start gap-3 rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+              <div
+                className="contact-card anim-fade-up flex items-start gap-3 rounded-xl border border-slate-200 bg-white p-4 shadow-sm"
+                style={{ animationDelay: `${contactInfo.length * 80}ms` }}
+              >
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
                   <MessageCircle size={18} aria-hidden="true" />
                 </span>
@@ -250,7 +341,7 @@ export default function ContactPage() {
                     href="https://wa.me/923041298136?text=Hello%20Ruman%20Mart"
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex shrink-0 items-center gap-1 rounded-full bg-emerald-500 px-3 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-emerald-600"
+                    className="inline-flex shrink-0 items-center gap-1 rounded-full bg-emerald-500 px-3 py-1.5 text-xs font-semibold text-white transition-all duration-300 hover:bg-emerald-600 hover:shadow-md hover:shadow-emerald-500/30"
                   >
                     Chat Now
                   </Link>
@@ -260,7 +351,10 @@ export default function ContactPage() {
           </div>
 
           {/* Find Us On Map */}
-          <div className="mt-8 rounded-xl border border-slate-200 bg-white p-5 shadow-sm sm:p-7">
+          <div
+            className="anim-fade-up mt-8 rounded-xl border border-slate-200 bg-white p-5 shadow-sm sm:p-7"
+            style={{ animationDelay: "0ms" }}
+          >
             <h2 className="text-xl font-bold text-[#0b1d45] sm:text-2xl">
               Find Us <span className="text-[#19d5f2]">On Map</span>
             </h2>
@@ -281,7 +375,7 @@ export default function ContactPage() {
               </div>
 
               {/* Visit our store card */}
-              <div className="flex flex-col items-center justify-center gap-3 rounded-xl bg-[#f5f7fb] p-6 text-center">
+              <div className="contact-card flex flex-col items-center justify-center gap-3 rounded-xl bg-[#f5f7fb] p-6 text-center">
                 <span className="flex h-14 w-14 items-center justify-center rounded-full bg-[#e6f7fc] text-[#0b75a5]">
                   <MapPin size={28} aria-hidden="true" />
                 </span>
@@ -298,9 +392,13 @@ export default function ContactPage() {
                 <Link
                   href={`https://www.google.com/maps?q=${encodeURIComponent(STORE_ADDRESS)}`}
                   target="_blank"
-                  className="mt-1 inline-flex items-center gap-2 rounded-lg border-2 border-[#19c9ee] px-5 py-2.5 text-sm font-semibold text-[#0b75a5] transition-colors hover:bg-[#e6f7fc]"
+                  className="group mt-1 inline-flex items-center gap-2 rounded-lg border-2 border-[#19c9ee] px-5 py-2.5 text-sm font-semibold text-[#0b75a5] transition-all duration-300 hover:bg-[#e6f7fc] hover:shadow-md"
                 >
-                  <Navigation size={15} aria-hidden="true" />
+                  <Navigation
+                    size={15}
+                    className="transition-transform duration-300 group-hover:-translate-y-0.5"
+                    aria-hidden="true"
+                  />
                   Get Directions
                 </Link>
               </div>

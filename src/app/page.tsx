@@ -1,4 +1,3 @@
-import Image from "next/image";
 import {
   ArrowRight,
   ChevronRight,
@@ -155,8 +154,8 @@ type TrustBadge = {
 const trustBadges: TrustBadge[] = [
   {
     Icon: Truck,
-    title: "Free Shipping",
-    subtitle: "On orders over Rs. 5,000",
+    title: "Fast Delivery",
+    subtitle: "Quick delivery to your doorstep",
   },
   {
     Icon: ShieldCheck,
@@ -197,78 +196,193 @@ export default function Home() {
       <Navbar />
 
       <main className="flex-1">
-        <section className="relative isolate overflow-hidden bg-[#031a3b]">
-          <Image
-            src="/hero.png"
-            alt="Ruman Mart products and top brands"
-            fill
-            priority
-            sizes="100vw"
-            quality={100}
-            className="scale-[1.12] object-cover object-center brightness-90 saturate-110 md:scale-[1.06] lg:scale-[1.02]"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#031a3b]/90 via-[#031a3b]/45 to-transparent sm:from-[#031a3b]/75 sm:via-[#031a3b]/35 sm:to-transparent" />
-          <div className="relative mx-auto flex min-h-[280px] max-w-[1400px] items-center px-5 py-8 sm:min-h-[360px] md:min-h-[470px] md:px-8 lg:min-h-[520px]">
-            <div className="max-w-xl text-white">
-              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-slate-200 sm:text-sm">
-                Your one-stop shop
+      <section className="relative isolate overflow-hidden bg-[#031a3b]">
+  <div
+    className="absolute inset-0 bg-[url('/mobile-hero.png')] bg-cover bg-center sm:hidden"
+    aria-hidden="true"
+  />
+
+  <div
+    className="absolute inset-0 hidden bg-[url('/hero.png')] bg-cover bg-center sm:block"
+    aria-hidden="true"
+  />
+
+  {/* Overlay */}
+  <div
+    className="absolute inset-0 bg-[#031a3b]/50"
+    aria-hidden="true"
+  />
+
+  <div className="relative mx-auto flex min-h-[380px] max-w-[1400px] items-center px-5 py-8 sm:min-h-[360px] md:min-h-[470px] md:px-8 lg:min-h-[520px]">
+    <div className="max-w-xl text-white">
+
+      <p className="mb-3 hidden text-xs font-semibold uppercase tracking-[0.22em] text-slate-200 sm:block sm:text-sm">
+        Your one-stop shop
+      </p>
+
+      <h1 className="mt-16 text-[1.55rem] font-bold leading-[1.02] tracking-tight sm:mt-0 sm:text-5xl lg:text-6xl">
+        Everything You Need
+        <span className="block text-[#19d5f2]">
+          Under One Roof
+        </span>
+      </h1>
+
+      <p className="mt-5 max-w-lg text-sm leading-6 text-slate-200 sm:text-base">
+        Electronics, homeware, kitchen accessories, style gadgets,
+        perfumes and all types of watches.
+      </p>
+
+      <p className="mt-3 text-xs font-medium text-slate-300 sm:text-sm">
+        Best quality
+        <span className="px-2 text-[#19d5f2]">•</span>
+        Trusted brands
+        <span className="px-2 text-[#19d5f2]">•</span>
+        Fast delivery
+      </p>
+
+      <a
+        href="/categories"
+        className="mt-7 inline-flex items-center gap-2 rounded-full bg-[#19c9ee] px-5 py-2.5 text-xs font-semibold text-white shadow-lg shadow-cyan-950/30 transition-colors hover:bg-[#0db4d8] sm:px-7 sm:py-3 sm:text-sm"
+      >
+        Shop Now
+        <ArrowRight size={16} aria-hidden="true" />
+      </a>
+
+    </div>
+  </div>
+</section>
+      {/* Categories */}
+<section className="border-b border-slate-200 bg-white py-7 sm:py-9">
+  <style>{`
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes cardShine {
+      0% { transform: translateX(-120%) skewX(-15deg); }
+      100% { transform: translateX(220%) skewX(-15deg); }
+    }
+
+    .anim-fade-up {
+      opacity: 0;
+      animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .cat-card {
+      background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
+    }
+    .cat-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1.5px;
+      background: linear-gradient(135deg, #19c9ee, #0b75a5, transparent 60%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0;
+      transition: opacity 0.35s ease;
+      pointer-events: none;
+      z-index: 2;
+    }
+    .cat-card:hover::before {
+      opacity: 1;
+    }
+    .cat-card-shine {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 40%;
+      height: 100%;
+      background: linear-gradient(
+        110deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.55) 50%,
+        transparent 100%
+      );
+      transform: translateX(-120%) skewX(-15deg);
+      pointer-events: none;
+      z-index: 3;
+    }
+    .cat-card:hover .cat-card-shine {
+      animation: cardShine 0.9s ease forwards;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .anim-fade-up, .cat-card-shine {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
+  `}</style>
+
+  <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+    {/* Header row with View All button */}
+    <div className="mb-4 flex items-center justify-between">
+      <h2 className="text-lg font-bold text-[#0b1d45] sm:text-xl">
+        Shop by Category
+      </h2>
+      <a
+        href="/categories"
+        className="group inline-flex items-center gap-1 text-xs font-semibold text-[#0b75a5] transition-colors hover:text-[#064d70] sm:text-sm"
+      >
+        View All
+        <ChevronRight
+          size={16}
+          className="transition-transform duration-300 group-hover:translate-x-0.5"
+          aria-hidden="true"
+        />
+      </a>
+    </div>
+
+    <div className="scrollbar-hide flex snap-x gap-4 overflow-x-auto pb-2 sm:grid sm:grid-cols-3 sm:overflow-visible lg:grid-cols-6">
+      {categories.map(({ name, image }, index) => (
+        <a
+          key={name}
+          href={`/categories/${name.toLowerCase().replaceAll(" ", "-")}`}
+          className="cat-card anim-fade-up group relative flex min-w-[220px] snap-start flex-col overflow-hidden rounded-2xl border border-slate-200/80 shadow-[0_2px_10px_rgba(11,29,69,0.06)] transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_40px_-8px_rgba(11,117,165,0.28)] sm:min-w-0"
+          style={{ animationDelay: `${Math.min(index * 60, 400)}ms` }}
+        >
+          {/* Shine sweep on hover */}
+          <span className="cat-card-shine" aria-hidden="true" />
+
+          {/* Image */}
+          <div className="relative h-36 w-full overflow-hidden bg-white sm:h-40">
+            <img
+              src={image}
+              alt={name}
+              className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
+            />
+            {/* Bottom gradient for contrast */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#031a3b]/55 via-[#031a3b]/0 to-transparent opacity-70 transition-opacity duration-300 group-hover:opacity-90" />
+
+            {/* Name overlay on image (bottom) */}
+            <div className="absolute inset-x-0 bottom-0 px-3.5 pb-2.5">
+              <p className="truncate text-sm font-bold text-white drop-shadow-sm">
+                {name}
               </p>
-              <h1 className="text-3xl font-bold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
-                Everything You Need
-                <span className="block text-[#19d5f2]">Under One Roof</span>
-              </h1>
-              <p className="mt-5 max-w-lg text-sm leading-6 text-slate-200 sm:text-base">
-                Electronics, homeware, kitchen accessories, style gadgets,
-                perfumes and all types of watches.
-              </p>
-              <p className="mt-3 text-xs font-medium text-slate-300 sm:text-sm">
-                Best quality <span className="px-2 text-[#19d5f2]">•</span>
-                Trusted brands <span className="px-2 text-[#19d5f2]">•</span>
-                Fast delivery
-              </p>
-              <a
-                href="/categories"
-                className="mt-7 inline-flex items-center gap-3 rounded-full bg-[#19c9ee] px-7 py-3 text-sm font-semibold text-white shadow-lg shadow-cyan-950/30 transition-colors hover:bg-[#0db4d8]"
-              >
-                Shop Now <ArrowRight size={18} aria-hidden="true" />
-              </a>
             </div>
           </div>
-        </section>
 
-        {/* Categories */}
-        <section className="border-b border-slate-200 bg-white py-7 sm:py-9">
-          <div className="mx-auto max-w-[1400px] px-4 md:px-8">
-            <div className="scrollbar-hide flex snap-x gap-4 overflow-x-auto pb-2 sm:grid sm:grid-cols-3 sm:overflow-visible lg:grid-cols-6">
-              {categories.map(({ name, image }) => (
-                <a
-                  key={name}
-                  href={`/categories/${name.toLowerCase().replaceAll(" ", "-")}`}
-                  className="group flex min-w-[220px] snap-start flex-col overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition-all hover:-translate-y-0.5 hover:border-[#1fb6e6] hover:shadow-md sm:min-w-0"
-                >
-                  <div className="h-36 w-full overflow-hidden bg-white sm:h-40">
-                    <img
-                      src={image}
-                      alt={name}
-                      className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                    />
-                  </div>
-
-                  <div className="flex items-center justify-between border-t border-slate-100 px-4 py-3">
-                    <span className="truncate text-sm font-semibold text-[#0b1d45]">
-                      {name}
-                    </span>
-                    <ChevronRight
-                      size={18}
-                      className="shrink-0 text-slate-400 transition-transform group-hover:translate-x-0.5 group-hover:text-[#0b75a5]"
-                      aria-hidden="true"
-                    />
-                  </div>
-                </a>
-              ))}
-            </div>
+          {/* Footer row */}
+          <div className="relative flex items-center justify-between gap-2 border-t border-slate-100 bg-white px-4 py-3">
+            <span className="truncate text-xs font-semibold text-slate-500 transition-colors group-hover:text-[#0b75a5]">
+              Shop now
+            </span>
+            <span className="relative flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#e6f7fc] text-[#0b75a5] transition-all duration-300 group-hover:scale-110 group-hover:bg-gradient-to-br group-hover:from-[#19c9ee] group-hover:to-[#0b75a5] group-hover:text-white group-hover:shadow-lg group-hover:shadow-[#19c9ee]/40">
+              <ChevronRight
+                size={16}
+                className="transition-transform duration-300 group-hover:translate-x-0.5"
+                aria-hidden="true"
+              />
+            </span>
           </div>
-        </section>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
 
         {/* Featured Products */}
         <section className="bg-[#f7fafc] py-8 sm:py-10">

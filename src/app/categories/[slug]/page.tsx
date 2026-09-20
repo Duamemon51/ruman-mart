@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -83,7 +82,7 @@ function productSlug(name: string) {
 }
 
 const heroBenefits: { Icon: LucideIcon; title: string; text: string }[] = [
-  { Icon: Truck, title: "Free Shipping", text: "On orders over Rs. 5,000" },
+   { Icon: Truck, title: "Fast Delivery", text: "Quick delivery to your doorstep" },
   { Icon: ShieldCheck, title: "Secure Payments", text: "100% secure checkout" },
   { Icon: Headset, title: "24/7 Support", text: "We're here to help" },
 ];
@@ -124,50 +123,74 @@ export default async function CategoryProductsPage({
 
       <main className="flex-1">
         {/* Hero */}
-        <section className="relative isolate overflow-hidden bg-[#031a3b]">
-          <Image
-            src="/hero.png"
-            alt="Ruman Mart products"
-            fill
-            priority
-            sizes="100vw"
-            quality={100}
-            className="scale-[1.12] object-cover object-center brightness-90 saturate-110 md:scale-[1.06] lg:scale-[1.02]"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#031a3b]/90 via-[#031a3b]/45 to-transparent sm:from-[#031a3b]/75 sm:via-[#031a3b]/35 sm:to-transparent" />
-          <div className="relative mx-auto flex min-h-[240px] max-w-[1400px] items-center px-5 py-8 sm:min-h-[300px] md:min-h-[380px] md:px-8">
-            <div className="absolute inset-x-5 top-0 flex items-center gap-1.5 py-4 text-sm text-slate-300 md:inset-x-8">
-              <Link href="/" className="flex items-center gap-1 hover:text-white">
-                <HomeIcon size={14} aria-hidden="true" />
-                Home
-              </Link>
-              <ChevronRight size={14} className="text-slate-400" aria-hidden="true" />
-              <span className="font-semibold text-white">{category.name}</span>
-            </div>
-            <div className="w-full min-w-0 max-w-xl text-white">
-              <h1 className="text-3xl font-bold leading-[1.05] sm:text-5xl lg:text-6xl">
-                {category.name}
-                <span className="block text-[#19d5f2]">
-                  {category.heroTitle ?? "Made for You"}
-                </span>
-              </h1>
-              <p className="mt-5 max-w-xl text-sm leading-6 text-slate-200 sm:text-base">
-                {category.heroDescription ?? category.description}
-              </p>
-              <div className="mt-8 grid max-w-2xl grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-6">
-                {heroBenefits.map(({ Icon, title, text }) => (
-                  <div key={title} className="flex items-center gap-3">
-                    <Icon size={31} className="shrink-0 text-[#19d5f2]" aria-hidden="true" />
-                    <div>
-                      <p className="text-sm font-bold text-white">{title}</p>
-                      <p className="text-xs text-slate-300">{text}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
+  <section className="relative isolate overflow-hidden bg-[#031a3b]">
+  <div
+    className="absolute inset-0 bg-[url('/mobile-hero.png')] bg-cover bg-center sm:hidden"
+    aria-hidden="true"
+  />
+
+  <div
+    className="absolute inset-0 hidden bg-[url('/hero.png')] bg-cover bg-center sm:block"
+    aria-hidden="true"
+  />
+
+  {/* Dark Blue Overlay */}
+  <div
+    className="absolute inset-0 bg-[#031a3b]/50"
+    aria-hidden="true"
+  />
+
+  <div className="relative mx-auto flex min-h-[400px] max-w-[1400px] items-center px-5 py-8 sm:min-h-[300px] md:min-h-[380px] md:px-8">
+    
+    {/* Breadcrumb - mobile par hidden */}
+    <div className="absolute inset-x-5 top-0 hidden items-center gap-1.5 py-4 text-sm text-slate-300 sm:flex md:inset-x-8">
+      <Link href="/" className="flex items-center gap-1 hover:text-white">
+        <HomeIcon size={14} aria-hidden="true" />
+        Home
+      </Link>
+
+      <ChevronRight
+        size={14}
+        className="text-slate-400"
+        aria-hidden="true"
+      />
+
+      <span className="font-semibold text-white">
+        {category.name}
+      </span>
+    </div>
+
+    <div className="w-full min-w-0 max-w-xl text-white">
+      <h1 className="text-[1.55rem] font-bold leading-[1.05] sm:text-5xl lg:text-6xl">
+        {category.name}
+        <span className="block text-[#19d5f2]">
+          {category.heroTitle ?? "Made for You"}
+        </span>
+      </h1>
+
+      <p className="mt-5 max-w-xl text-sm leading-6 text-slate-200 sm:text-base">
+        {category.heroDescription ?? category.description}
+      </p>
+
+      <div className="mt-8 grid max-w-2xl grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-6">
+        {heroBenefits.map(({ Icon, title, text }) => (
+          <div key={title} className="flex items-center gap-3">
+            <Icon
+              size={31}
+              className="shrink-0 text-[#19d5f2]"
+              aria-hidden="true"
+            />
+
+            <div>
+              <p className="text-sm font-bold text-white">{title}</p>
+              <p className="text-xs text-slate-300">{text}</p>
             </div>
           </div>
-        </section>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
 
         <div className="mx-auto max-w-[1400px] px-4 py-6 md:px-8">
           {/* Header bar */}
@@ -181,106 +204,116 @@ export default async function CategoryProductsPage({
               </p>
             </div>
 
-            <div className="flex items-center gap-3">
-              <div className="relative">
-                <select
-                  defaultValue="popularity"
-                  className="appearance-none rounded-lg border border-slate-200 bg-white py-2 pl-3 pr-8 text-sm font-medium text-slate-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#19c9ee]"
-                  aria-label="Sort by"
-                >
-                  <option value="popularity">Sort by: Popularity</option>
-                  <option value="price-low">Sort by: Price - Low to High</option>
-                  <option value="price-high">Sort by: Price - High to Low</option>
-                  <option value="rating">Sort by: Rating</option>
-                  <option value="newest">Sort by: Newest</option>
-                </select>
-                <ChevronRight
-                  size={14}
-                  className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 rotate-90 text-slate-400"
-                  aria-hidden="true"
-                />
-              </div>
+       <div className="flex w-full items-center gap-2 sm:w-auto sm:gap-3">
+  <div className="relative min-w-0 flex-1 sm:flex-none">
+    <select
+      defaultValue="popularity"
+      className="w-full appearance-none rounded-lg border border-slate-200 bg-white py-2 pl-3 pr-8 text-xs font-medium text-slate-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#19c9ee] sm:w-auto sm:text-sm"
+      aria-label="Sort by"
+    >
+      <option value="popularity">Sort by: Popularity</option>
+      <option value="price-low">Sort by: Price - Low to High</option>
+      <option value="price-high">Sort by: Price - High to Low</option>
+      <option value="rating">Sort by: Rating</option>
+      <option value="newest">Sort by: Newest</option>
+    </select>
 
-              <div className="flex items-center overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm">
-                <button
-                  type="button"
-                  aria-label="Grid view"
-                  className="flex h-9 w-9 items-center justify-center bg-[#19c9ee] text-white"
-                >
-                  <Grid3x3 size={16} aria-hidden="true" />
-                </button>
-                <button
-                  type="button"
-                  aria-label="List view"
-                  className="flex h-9 w-9 items-center justify-center text-slate-500 hover:bg-slate-50"
-                >
-                  <List size={16} aria-hidden="true" />
-                </button>
-              </div>
-            </div>
+    <ChevronRight
+      size={14}
+      className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 rotate-90 text-slate-400"
+      aria-hidden="true"
+    />
+  </div>
+
+  <div className="flex shrink-0 items-center overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm">
+    <button
+      type="button"
+      aria-label="Grid view"
+      className="flex h-9 w-9 items-center justify-center bg-[#19c9ee] text-white"
+    >
+      <Grid3x3 size={16} aria-hidden="true" />
+    </button>
+
+    <button
+      type="button"
+      aria-label="List view"
+      className="flex h-9 w-9 items-center justify-center text-slate-500 hover:bg-slate-50"
+    >
+      <List size={16} aria-hidden="true" />
+    </button>
+  </div>
+</div>
           </div>
 
-          {/* Product grid */}
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-            {category.products.map((product) => {
-              const discount = Math.round(
-                (1 - product.price / product.originalPrice) * 100
-              );
-              return (
-                <article
-                  key={product.name}
-                  className="group flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
-                >
-                  <div className="relative flex h-40 items-center justify-center bg-white px-4 pt-4">
-                    <WishlistButton product={product} />
-                    <span className="absolute right-2 top-2 rounded-full bg-[#0b75a5] px-2 py-0.5 text-[11px] font-bold text-white">
-                      -{discount}%
-                    </span>
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                    />
-                  </div>
+    {/* Product grid */}
+<div className="grid grid-cols-1 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+  {category.products.map((product) => {
+    const discount = Math.round(
+      (1 - product.price / product.originalPrice) * 100
+    );
 
-                  <div className="flex flex-1 flex-col gap-1 px-4 pb-4 pt-3">
-                    <h3 className="truncate text-sm font-bold text-[#0b1d45]">
-                      {product.name}
-                    </h3>
-                    <p className="text-xs text-slate-500">{product.brand}</p>
+    return (
+      <article
+        key={product.name}
+        className="group flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
+      >
+        <div className="relative flex h-40 items-center justify-center bg-white px-4 pt-4">
+          <WishlistButton product={product} />
 
-                    <div className="flex items-center gap-1.5">
-                      <StarRating rating={product.rating} />
-                      <span className="text-xs font-semibold text-[#0b1d45]">
-                        {product.rating}
-                      </span>
-                      <span className="text-xs text-slate-400">
-                        ({product.reviews.toLocaleString()})
-                      </span>
-                    </div>
+          <span className="absolute right-2 top-2 rounded-full bg-[#0b75a5] px-2 py-0.5 text-[11px] font-bold text-white">
+            -{discount}%
+          </span>
 
-                    <div className="mt-1 flex items-baseline gap-2">
-                      <span className="text-base font-bold text-[#0b1d45]">
-                        {formatPrice(product.price)}
-                      </span>
-                      <span className="text-xs text-slate-400 line-through">
-                        {formatPrice(product.originalPrice)}
-                      </span>
-                    </div>
+          <img
+            src={product.image}
+            alt={product.name}
+            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+          />
+        </div>
 
-                    <Link
-                      href={`/categories/${slug}/${productSlug(product.name)}`}
-                      className="mt-2 inline-flex items-center justify-center gap-2 rounded-lg bg-[radial-gradient(circle_at_top,#2b5b9a_0%,#0b3268_55%,#06234d_100%)] py-2 text-xs font-semibold text-white transition-opacity hover:opacity-90"
-                    >
-                      View Product
-                      <ArrowRight size={14} aria-hidden="true" />
-                    </Link>
-                  </div>
-                </article>
-              );
-            })}
+        <div className="flex flex-1 flex-col gap-1 px-4 pb-4 pt-3">
+          <h3 className="truncate text-sm font-bold text-[#0b1d45]">
+            {product.name}
+          </h3>
+
+          <p className="text-xs text-slate-500">
+            {product.brand}
+          </p>
+
+          <div className="flex items-center gap-1.5">
+            <StarRating rating={product.rating} />
+
+            <span className="text-xs font-semibold text-[#0b1d45]">
+              {product.rating}
+            </span>
+
+            <span className="text-xs text-slate-400">
+              ({product.reviews.toLocaleString()})
+            </span>
           </div>
 
+          <div className="mt-1 flex items-baseline gap-2">
+            <span className="text-base font-bold text-[#0b1d45]">
+              {formatPrice(product.price)}
+            </span>
+
+            <span className="text-xs text-slate-400 line-through">
+              {formatPrice(product.originalPrice)}
+            </span>
+          </div>
+
+          <Link
+            href={`/categories/${slug}/${productSlug(product.name)}`}
+            className="mt-2 inline-flex items-center justify-center gap-2 rounded-lg bg-[radial-gradient(circle_at_top,#2b5b9a_0%,#0b3268_55%,#06234d_100%)] py-2 text-xs font-semibold text-white transition-opacity hover:opacity-90"
+          >
+            View Product
+            <ArrowRight size={14} aria-hidden="true" />
+          </Link>
+        </div>
+      </article>
+    );
+  })}
+</div>
           {/* Pagination */}
           <div className="mt-8 flex items-center justify-center gap-1.5">
             <button

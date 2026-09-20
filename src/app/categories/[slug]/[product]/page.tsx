@@ -82,7 +82,7 @@ const relatedProducts: RelatedProduct[] = [
 ];
 
 const trustIcons: { Icon: LucideIcon; title: string; text: string }[] = [
-  { Icon: Truck, title: "Free Shipping", text: "On orders over Rs. 5,000" },
+  { Icon: Truck, title: "Fast Delivery", text: "Quick delivery to your doorstep" },
   { Icon: ShieldCheck, title: "Secure Payments", text: "100% secure checkout" },
   { Icon: Headset, title: "24/7 Support", text: "We're here to help" },
   { Icon: RotateCcw, title: "Easy Returns", text: "Hassle free returns" },

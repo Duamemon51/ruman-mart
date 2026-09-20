@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import {
   ChevronRight,
@@ -18,6 +17,7 @@ import {
   ShieldCheck,
   RotateCcw,
   Headset,
+  Info,
   type LucideIcon,
 } from "lucide-react";
 import Navbar from "../components/Navbar";
@@ -64,7 +64,7 @@ const relatedProducts: RelatedProduct[] = [
 ];
 
 const trustBadges: { Icon: LucideIcon; title: string; subtitle: string }[] = [
-  { Icon: Truck, title: "Free Shipping", subtitle: "On orders over Rs. 5,000" },
+  { Icon: Truck, title: "Nationwide Delivery", subtitle: "Rs. 200 - Rs. 250 shipping" },
   { Icon: ShieldCheck, title: "Secure Payments", subtitle: "100% secure checkout" },
   { Icon: RotateCcw, title: "Easy Returns", subtitle: "Hassle free returns" },
   { Icon: Headset, title: "24/7 Support", subtitle: "We're here to help" },
@@ -113,8 +113,6 @@ export default function CartPage() {
     (sum, item) => sum + item.price * item.quantity,
     0
   );
-  const shipping = subtotal > 5000 || subtotal === 0 ? 0 : 250;
-  const total = subtotal + shipping;
   const itemCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
@@ -124,18 +122,21 @@ export default function CartPage() {
       <main className="flex-1">
         {/* Hero */}
         <section className="relative isolate overflow-hidden bg-[#031a3b]">
-          <Image
-            src="/hero.png"
-            alt="Ruman Mart products and top brands"
-            fill
-            priority
-            sizes="100vw"
-            quality={100}
-            className="scale-[1.12] object-cover object-center brightness-90 saturate-110 md:scale-[1.06] lg:scale-[1.02]"
+          <div
+            className="absolute inset-0 bg-[url('/mobile-hero.png')] bg-cover bg-center sm:hidden"
+            aria-hidden="true"
           />
-          <div className="relative mx-auto flex min-h-[280px] max-w-[1400px] items-center px-5 py-8 sm:min-h-[300px] md:min-h-[340px] md:px-8 lg:min-h-[380px]">
+          <div
+            className="absolute inset-0 hidden bg-[url('/hero.png')] bg-cover bg-center sm:block"
+            aria-hidden="true"
+          />
+          {/* Overlay */}
+          <div className="absolute inset-0 bg-[#031a3b]/50" aria-hidden="true" />
+
+          <div className="relative mx-auto flex min-h-[400px] max-w-[1400px] items-center px-5 py-8 sm:min-h-[300px] md:min-h-[340px] md:px-8 lg:min-h-[380px]">
             <div className="w-full max-w-xl text-white">
-              <div className="mb-8 flex items-center gap-1 text-xs text-slate-300">
+              {/* Breadcrumb - mobile par hidden */}
+              <div className="mb-8 hidden items-center gap-1 text-xs text-slate-300 sm:flex">
                 <Link href="/" className="flex items-center gap-1 hover:text-white">
                   <HomeIcon size={12} aria-hidden="true" />
                   Home
@@ -145,9 +146,14 @@ export default function CartPage() {
               </div>
 
               <div className="flex items-center gap-4">
-                <ShoppingCart size={42} strokeWidth={1.7} className="shrink-0 text-[#19d5f2]" aria-hidden="true" />
+                <ShoppingCart
+                  size={42}
+                  strokeWidth={1.7}
+                  className="shrink-0 text-[#19d5f2]"
+                  aria-hidden="true"
+                />
                 <div>
-                  <h1 className="text-3xl font-bold leading-none tracking-tight sm:text-4xl">
+                  <h1 className="text-[1.55rem] font-bold leading-none tracking-tight sm:text-4xl">
                     Your <span className="text-[#19d5f2]">Cart</span>
                   </h1>
                   <p className="mt-2 text-xs text-slate-300 sm:text-sm">
@@ -284,19 +290,24 @@ export default function CartPage() {
                   </div>
                   <div className="flex items-center justify-between text-slate-600">
                     <span>Shipping Charges</span>
-                    {shipping === 0 ? (
-                      <span className="rounded-full bg-emerald-50 px-2 py-0.5 text-xs font-semibold text-emerald-600">
-                        Free Shipping
-                      </span>
-                    ) : (
-                      <span className="font-semibold text-[#0b1d45]">{formatPrice(shipping)}</span>
-                    )}
+                    <span className="text-xs font-medium text-slate-400">
+                      Calculated at checkout
+                    </span>
                   </div>
                 </div>
 
+                {/* Shipping rate note */}
+                <div className="mt-3 flex items-start gap-2 rounded-lg bg-[#f5f7fb] px-3 py-2.5">
+                  <Info size={14} className="mt-0.5 shrink-0 text-[#0b75a5]" aria-hidden="true" />
+                  <p className="text-xs leading-5 text-slate-500">
+                    Shipping across Pakistan: Rs. 200 within Sindh, Rs. 250 to
+                    other provinces (per 1kg parcel).
+                  </p>
+                </div>
+
                 <div className="mt-4 flex items-center justify-between border-t border-slate-200 pt-4">
-                  <span className="text-sm font-bold text-[#0b1d45]">Total Amount</span>
-                  <span className="text-xl font-bold text-[#0b75a5]">{formatPrice(total)}</span>
+                  <span className="text-sm font-bold text-[#0b1d45]">Estimated Subtotal</span>
+                  <span className="text-xl font-bold text-[#0b75a5]">{formatPrice(subtotal)}</span>
                 </div>
 
                 <Link

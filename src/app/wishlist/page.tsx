@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { ChevronRight, Heart, Home as HomeIcon, ShoppingCart, Star, Trash2 } from "lucide-react";
 import Navbar from "../components/Navbar";
@@ -48,18 +47,53 @@ export default function WishlistPage() {
     <div className="flex min-h-screen flex-col bg-[#f5f7fb] text-slate-800">
       <Navbar />
       <main className="flex-1">
-        <section className="relative isolate overflow-hidden bg-[#031a3b]">
-          <Image src="/hero.png" alt="Ruman Mart products and top brands" fill priority sizes="100vw" quality={100} className="scale-[1.12] object-cover object-center brightness-90 saturate-110 md:scale-[1.06] lg:scale-[1.02]" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#031a3b]/90 via-[#031a3b]/45 to-transparent sm:from-[#031a3b]/75 sm:via-[#031a3b]/35 sm:to-transparent" />
-          <div className="relative mx-auto flex min-h-[240px] max-w-[1400px] items-center px-5 py-7 sm:min-h-[280px] md:min-h-[340px] md:px-8 lg:min-h-[380px]">
-            <div className="max-w-2xl text-white">
-              <div className="mb-4 flex items-center gap-1.5 text-xs text-slate-300"><Link href="/" className="flex items-center gap-1 hover:text-white"><HomeIcon size={12} aria-hidden="true" /> Home</Link><ChevronRight size={12} aria-hidden="true" /><span className="text-slate-100">Wishlist</span></div>
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#19d5f2] sm:text-sm">Saved for later</p>
-              <h1 className="mt-2 text-3xl font-bold leading-[1.05] sm:text-5xl">Your <span className="text-[#19d5f2]">Wishlist</span></h1>
-              <p className="mt-4 max-w-xl text-sm leading-6 text-slate-200 sm:text-base">Keep the products you love close and come back when you&apos;re ready.</p>
-            </div>
-          </div>
-        </section>
+       <section className="relative isolate overflow-hidden bg-[#031a3b]">
+  <div
+    className="absolute inset-0 bg-[url('/mobile-hero.png')] bg-cover bg-center sm:hidden"
+    aria-hidden="true"
+  />
+
+  <div
+    className="absolute inset-0 hidden bg-[url('/hero.png')] bg-cover bg-center sm:block"
+    aria-hidden="true"
+  />
+
+  {/* Overlay */}
+  <div
+    className="absolute inset-0 bg-[#031a3b]/50"
+    aria-hidden="true"
+  />
+
+  <div className="relative mx-auto flex min-h-[400px] max-w-[1400px] items-center px-5 py-7 sm:min-h-[280px] md:min-h-[340px] md:px-8 lg:min-h-[380px]">
+    <div className="max-w-2xl text-white">
+
+      {/* Breadcrumb - mobile par hidden */}
+      <div className="mb-4 hidden items-center gap-1.5 text-xs text-slate-300 sm:flex">
+        <Link href="/" className="flex items-center gap-1 hover:text-white">
+          <HomeIcon size={12} aria-hidden="true" />
+          Home
+        </Link>
+
+        <ChevronRight size={12} aria-hidden="true" />
+
+        <span className="text-slate-100">Wishlist</span>
+      </div>
+
+      <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#19d5f2] sm:text-sm">
+        Saved for later
+      </p>
+
+      <h1 className="mt-2 text-[1.55rem] font-bold leading-[1.05] sm:text-5xl">
+        Your <span className="text-[#19d5f2]">Wishlist</span>
+      </h1>
+
+      <p className="mt-4 max-w-xl text-sm leading-6 text-slate-200 sm:text-base">
+        Keep the products you love close and come back when you&apos;re ready.
+      </p>
+
+    </div>
+  </div>
+</section>
 
         <section className="mx-auto max-w-[1400px] px-4 py-10 sm:py-14 md:px-8">
           <div className="mb-6 flex items-end justify-between gap-4"><div><h2 className="text-2xl font-bold text-[#0b1d45] sm:text-3xl">Saved Items ({items.length})</h2><p className="mt-1 text-sm text-slate-500">Your favorite products in one place.</p></div><Link href="/categories" className="text-sm font-semibold text-[#0b75a5] hover:text-[#064d70]">Continue Shopping</Link></div>

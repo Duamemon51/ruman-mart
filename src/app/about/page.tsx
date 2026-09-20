@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import {
   ChevronRight,
@@ -66,42 +65,56 @@ export default function AboutPage() {
       <Navbar />
 
       <main className="flex-1">
-        {/* Hero */}
-        <section className="relative isolate overflow-hidden bg-[#031a3b]">
-          <Image
-            src="/hero.png"
-            alt="Ruman Mart products and top brands"
-            fill
-            priority
-            sizes="100vw"
-            quality={100}
-            className="scale-[1.12] object-cover object-center brightness-90 saturate-110 md:scale-[1.06] lg:scale-[1.02]"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#031a3b]/90 via-[#031a3b]/45 to-transparent sm:from-[#031a3b]/75 sm:via-[#031a3b]/35 sm:to-transparent" />
-          <div className="relative mx-auto flex min-h-[240px] max-w-[1400px] items-center px-5 py-7 sm:min-h-[280px] md:min-h-[340px] md:px-8 lg:min-h-[380px]">
-            <div className="max-w-xl text-white">
-              <div className="mb-4 flex items-center gap-1.5 text-xs text-slate-300">
-                <Link href="/" className="flex items-center gap-1 hover:text-white">
-                  <HomeIcon size={12} aria-hidden="true" />
-                  Home
-                </Link>
-                <ChevronRight size={12} aria-hidden="true" />
-                <span className="text-slate-100">About Us</span>
-              </div>
-              <h1 className="text-3xl font-bold leading-none tracking-tight sm:text-4xl lg:text-5xl">
-                About <span className="text-[#19d5f2]">Us</span>
-              </h1>
-              <h2 className="mt-2 text-base font-semibold text-white sm:text-lg">
-                Original Products. Affordable Rates.
-              </h2>
-              <p className="mt-3 max-w-lg text-xs leading-5 text-slate-200 sm:text-sm">
-                At Ruman Mart, we believe in making your life easier with the
-                best products, great prices and a seamless shopping experience
-                - all in one place.
-              </p>
-            </div>
-          </div>
-        </section>
+   {/* Hero */}
+<section className="relative isolate overflow-hidden bg-[#031a3b]">
+  <div
+    className="absolute inset-0 bg-[url('/mobile-hero.png')] bg-cover bg-center sm:hidden"
+    aria-hidden="true"
+  />
+
+  <div
+    className="absolute inset-0 hidden bg-[url('/hero.png')] bg-cover bg-center sm:block"
+    aria-hidden="true"
+  />
+
+  {/* Overlay */}
+  <div
+    className="absolute inset-0 bg-[#031a3b]/50"
+    aria-hidden="true"
+  />
+
+  <div className="relative mx-auto flex min-h-[400px] max-w-[1400px] items-center px-5 py-7 sm:min-h-[280px] md:min-h-[340px] md:px-8 lg:min-h-[380px]">
+    <div className="max-w-xl text-white">
+
+      {/* Breadcrumb - mobile par hidden */}
+      <div className="mb-4 hidden items-center gap-1.5 text-xs text-slate-300 sm:flex">
+        <Link href="/" className="flex items-center gap-1 hover:text-white">
+          <HomeIcon size={12} aria-hidden="true" />
+          Home
+        </Link>
+
+        <ChevronRight size={12} aria-hidden="true" />
+
+        <span className="text-slate-100">About Us</span>
+      </div>
+
+      <h1 className="text-[1.55rem] font-bold leading-none tracking-tight sm:text-4xl lg:text-5xl">
+        About <span className="text-[#19d5f2]">Us</span>
+      </h1>
+
+      <h2 className="mt-2 text-base font-semibold text-white sm:text-lg">
+        Original Products. Affordable Rates.
+      </h2>
+
+      <p className="mt-3 max-w-lg text-xs leading-5 text-slate-200 sm:text-sm">
+        At Ruman Mart, we believe in making your life easier with the
+        best products, great prices and a seamless shopping experience
+        - all in one place.
+      </p>
+
+    </div>
+  </div>
+</section>
 
         {/* Welcome */}
         <section className="bg-white py-10 sm:py-14">
@@ -127,39 +140,44 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Our Story */}
-        <section className="bg-[#f5f7fb] py-10 sm:py-14">
-          <div className="mx-auto grid max-w-[1400px] grid-cols-1 gap-8 px-4 md:px-8 lg:grid-cols-2 lg:items-center lg:gap-12">
-            <div>
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#0b75a5]">
-                Our Story
-              </p>
-              <h2 className="mt-2 text-2xl font-bold leading-tight text-[#0b1d45] sm:text-3xl">
-                Built with Passion,
-                <span className="block text-[#19d5f2]">For Your Convenience</span>
-              </h2>
-              <p className="mt-4 text-sm leading-6 text-slate-500">
-                Ruman Mart began with a simple idea: to put quality products
-                within reach of every home at a fair price. Starting in Hala,
-                we have grown from a single store into a presence across
-                Instagram, TikTok, Facebook, WhatsApp, and our flagship store
-                at Shakeel Shopping Centre, Tariq Road.
-              </p>
-              <p className="mt-3 text-sm leading-6 text-slate-500">
-                Today we proudly serve customers across Pakistan with a wide
-                and growing range of products.
-              </p>
-            </div>
+      {/* Our Story */}
+<section className="bg-[#f5f7fb] py-10 sm:py-14">
+  <div className="mx-auto grid max-w-[1400px] grid-cols-1 gap-8 px-4 md:px-8 lg:grid-cols-2 lg:items-center lg:gap-12">
+    <div>
+      <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#0b75a5]">
+        Our Story
+      </p>
 
-            <div className="relative overflow-hidden rounded-2xl bg-[#0b1d45] shadow-lg">
-              <img
-                src="/about.png"
-                alt="Ruman Mart workspace and products"
-                className="h-72 w-full object-cover sm:h-80"
-              />
-            </div>
-          </div>
-        </section>
+      <h2 className="mt-2 text-2xl font-bold leading-tight text-[#0b1d45] sm:text-3xl">
+        Built with Passion,
+        <span className="block text-[#19d5f2]">
+          For Your Convenience
+        </span>
+      </h2>
+
+      <p className="mt-4 text-sm leading-6 text-slate-500">
+        Ruman Mart began with a simple idea: to put quality products
+        within reach of every home at a fair price. Starting in Hala,
+        we have grown from a single store into a presence across
+        Instagram, TikTok, Facebook, WhatsApp, and our flagship store
+        at Shakeel Shopping Centre, Tariq Road.
+      </p>
+
+      <p className="mt-3 text-sm leading-6 text-slate-500">
+        Today we proudly serve customers across Pakistan with a wide
+        and growing range of products.
+      </p>
+    </div>
+
+    <div className="relative overflow-hidden rounded-2xl bg-[#0b1d45] shadow-lg">
+      <img
+        src="/about.png"
+        alt="Ruman Mart workspace and products"
+        className="h-auto w-full object-contain"
+      />
+    </div>
+  </div>
+</section>
 
         {/* Why Choose Us */}
         <section className="bg-white py-10 sm:py-14">

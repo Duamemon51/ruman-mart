@@ -11,6 +11,7 @@ import {
   Headset,
   Lock,
   Pencil,
+  MapPin,
   type LucideIcon,
 } from "lucide-react";
 import Navbar from "../components/Navbar";
@@ -30,9 +31,17 @@ const orderItems: OrderItem[] = [
   { name: "Smart Watch", brand: "Samsung", qty: 1, price: 12999, image: "/products/smartwatch.png" },
 ];
 
-const shippingMethods = [
-  { id: "standard", Icon: Truck, title: "Standard Shipping", subtitle: "3 - 5 business days", price: 250 },
+type ProvinceId = "sindh" | "other";
+
+const shippingRates: { id: ProvinceId; label: string; price: number; note: string }[] = [
+  { id: "sindh", label: "Sindh", price: 200, note: "Rs. 200 per 1kg parcel" },
+  { id: "other", label: "Other Province", price: 250, note: "Rs. 250 per 1kg parcel" },
 ];
+
+const citiesByProvince: Record<ProvinceId, string[]> = {
+  sindh: ["Hala", "Hala Old", "Hyderabad", "Karachi", "Sukkur", "Larkana"],
+  other: ["Lahore", "Islamabad", "Rawalpindi", "Faisalabad", "Peshawar", "Quetta"],
+};
 
 const paymentMethods = [
   { id: "cod", Icon: Banknote, title: "Cash on Delivery", subtitle: "Pay when you receive your order" },
@@ -49,11 +58,11 @@ function formatPrice(price: number) {
 }
 
 export default function CheckoutPage() {
-  const [shippingMethod, setShippingMethod] = useState("standard");
+  const [province, setProvince] = useState<ProvinceId>("sindh");
   const [paymentMethod, setPaymentMethod] = useState("cod");
 
   const subtotal = orderItems.reduce((sum, item) => sum + item.price * item.qty, 0);
-  const shippingCost = shippingMethods.find((m) => m.id === shippingMethod)?.price ?? 0;
+  const shippingCost = shippingRates.find((r) => r.id === province)?.price ?? 0;
   const discount = 0;
   const total = subtotal + shippingCost - discount;
 
@@ -178,17 +187,34 @@ export default function CheckoutPage() {
                       className="w-full rounded-lg border border-slate-200 px-3.5 py-2.5 text-sm focus:border-[#19c9ee] focus:outline-none focus:ring-2 focus:ring-[#19c9ee]/30"
                     />
                   </div>
+
+                  {/* Province select — drives shipping cost */}
+                  <div>
+                    <label className="mb-1.5 flex items-center gap-1.5 text-xs font-semibold text-slate-600">
+                      <MapPin size={13} className="text-[#0b75a5]" aria-hidden="true" />
+                      Province *
+                    </label>
+                    <select
+                      value={province}
+                      onChange={(e) => setProvince(e.target.value as ProvinceId)}
+                      className="w-full rounded-lg border border-slate-200 px-3.5 py-2.5 text-sm text-slate-700 focus:border-[#19c9ee] focus:outline-none focus:ring-2 focus:ring-[#19c9ee]/30"
+                    >
+                      <option value="sindh">Sindh</option>
+                      <option value="other">Other Province</option>
+                    </select>
+                  </div>
+
                   <div>
                     <label className="mb-1.5 block text-xs font-semibold text-slate-600">
                       City *
                     </label>
-                   
                     <select className="w-full rounded-lg border border-slate-200 px-3.5 py-2.5 text-sm text-slate-700 focus:border-[#19c9ee] focus:outline-none focus:ring-2 focus:ring-[#19c9ee]/30">
-                     <option>Hala</option>
-                      <option>Hala old</option>
-                      <option>hyderabad</option>
+                      {citiesByProvince[province].map((city) => (
+                        <option key={city}>{city}</option>
+                      ))}
                     </select>
                   </div>
+
                   <div>
                     <label className="mb-1.5 block text-xs font-semibold text-slate-600">
                       Postal Code *
@@ -199,7 +225,7 @@ export default function CheckoutPage() {
                       className="w-full rounded-lg border border-slate-200 px-3.5 py-2.5 text-sm focus:border-[#19c9ee] focus:outline-none focus:ring-2 focus:ring-[#19c9ee]/30"
                     />
                   </div>
-                  <div className="sm:col-span-2">
+                  <div>
                     <label className="mb-1.5 block text-xs font-semibold text-slate-600">
                       Country *
                     </label>
@@ -219,36 +245,29 @@ export default function CheckoutPage() {
                   <h2 className="text-base font-bold text-[#0b1d45]">Shipping Method</h2>
                 </div>
 
-                <div className="flex flex-col gap-3">
-                  {shippingMethods.map((method) => (
-                    <label
-                      key={method.id}
-                      className={`flex cursor-pointer items-center justify-between rounded-lg border p-3.5 transition-colors ${
-                        shippingMethod === method.id
-                          ? "border-[#19c9ee] bg-[#e6f7fc]"
-                          : "border-slate-200 hover:border-slate-300"
-                      }`}
-                    >
-                      <div className="flex items-center gap-3">
-                        <input
-                          type="radio"
-                          name="shipping-method"
-                          checked={shippingMethod === method.id}
-                          onChange={() => setShippingMethod(method.id)}
-                          className="h-4 w-4 accent-[#19c9ee]"
-                        />
-                        <method.Icon size={18} className="shrink-0 text-[#0b75a5]" aria-hidden="true" />
-                        <div>
-                          <p className="text-sm font-bold text-[#0b1d45]">{method.title}</p>
-                          <p className="text-xs text-slate-500">{method.subtitle}</p>
-                        </div>
-                      </div>
-                      <span className="text-sm font-bold text-[#0b1d45]">
-                        {formatPrice(method.price)}
-                      </span>
-                    </label>
-                  ))}
+                <div className="flex items-center justify-between rounded-lg border border-[#19c9ee] bg-[#e6f7fc] p-3.5">
+                  <div className="flex items-center gap-3">
+                    <Truck size={18} className="shrink-0 text-[#0b75a5]" aria-hidden="true" />
+                    <div>
+                      <p className="text-sm font-bold text-[#0b1d45]">
+                        Standard Delivery — Across Pakistan
+                      </p>
+                      <p className="text-xs text-slate-500">
+                        {shippingRates.find((r) => r.id === province)?.note} ·{" "}
+                        {shippingRates.find((r) => r.id === province)?.label}
+                      </p>
+                    </div>
+                  </div>
+                  <span className="text-sm font-bold text-[#0b1d45]">
+                    {formatPrice(shippingCost)}
+                  </span>
                 </div>
+
+                <p className="mt-3 text-xs text-slate-400">
+                  Rs. 200 within Sindh, Rs. 250 to other provinces (per 1kg
+                  parcel). Rate updates automatically based on the province
+                  selected above.
+                </p>
               </div>
 
               {/* Payment Method */}
@@ -338,7 +357,12 @@ export default function CheckoutPage() {
                     </span>
                   </div>
                   <div className="flex items-center justify-between text-slate-600">
-                    <span>Shipping Charges</span>
+                    <span>
+                      Shipping Charges
+                      <span className="ml-1 text-xs text-slate-400">
+                        ({shippingRates.find((r) => r.id === province)?.label})
+                      </span>
+                    </span>
                     <span className="font-semibold text-[#0b1d45]">
                       {formatPrice(shippingCost)}
                     </span>

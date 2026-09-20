@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ChevronRight, Home as HomeIcon } from "lucide-react";
 import Navbar from "./Navbar";
@@ -22,9 +21,10 @@ export default function ServicePage({ title, eyebrow, intro, sections }: Service
       <Navbar />
       <main className="flex-1">
         <section className="relative isolate overflow-hidden bg-[#031a3b]">
-          <Image src="/hero.png" alt="Ruman Mart products and top brands" fill priority sizes="100vw" quality={100} className="scale-[1.12] object-cover object-center brightness-90 saturate-110 md:scale-[1.06] lg:scale-[1.02]" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#031a3b]/90 via-[#031a3b]/45 to-transparent sm:from-[#031a3b]/75 sm:via-[#031a3b]/35 sm:to-transparent" />
-          <div className="relative mx-auto flex min-h-[240px] max-w-[1400px] items-center px-5 py-8 sm:min-h-[300px] md:min-h-[400px] md:px-8">
+          <div className="absolute inset-0 bg-[url('/mobile-hero.png')] bg-cover bg-center sm:hidden" aria-hidden="true" />
+          <div className="absolute inset-0 hidden bg-[url('/hero.png')] bg-cover bg-center sm:block" aria-hidden="true" />
+          <div className="absolute inset-0 hidden bg-gradient-to-r from-[#031a3b]/90 via-[#031a3b]/45 to-transparent sm:block sm:from-[#031a3b]/75 sm:via-[#031a3b]/35 sm:to-transparent" />
+          <div className="relative mx-auto flex min-h-[340px] max-w-[1400px] items-center px-5 py-8 sm:min-h-[300px] md:min-h-[400px] md:px-8">
             <div className="max-w-2xl text-white">
               <div className="mb-5 inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-xs text-slate-200 backdrop-blur-sm">
                 <Link href="/" className="flex items-center gap-1 hover:text-white"><HomeIcon size={12} aria-hidden="true" /> Home</Link>
@@ -33,7 +33,7 @@ export default function ServicePage({ title, eyebrow, intro, sections }: Service
               </div>
               <div className="border-l-4 border-[#19d5f2] pl-5">
                 <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#19d5f2]">{eyebrow}</p>
-                <h1 className="mt-2 text-3xl font-bold leading-tight sm:text-5xl">{title}</h1>
+                <h1 className="mt-2 text-[2rem] font-bold leading-tight sm:text-5xl">{title}</h1>
                 <p className="mt-4 max-w-xl text-sm leading-6 text-slate-200 sm:text-base">{intro}</p>
               </div>
             </div>
@@ -65,8 +65,8 @@ export default function ServicePage({ title, eyebrow, intro, sections }: Service
             ))}
           </div>
 
-          <Link href="/contact" className="mt-6 inline-flex items-center gap-2 rounded-lg bg-[#19c9ee] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#0db4d8] sm:hidden">
-            Contact us <ArrowRight size={15} aria-hidden="true" />
+          <Link href="/contact" className="mt-6 inline-flex items-center gap-2 rounded-lg bg-[#19c9ee] px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-[#0db4d8] sm:hidden">
+            Contact us <ArrowRight size={14} aria-hidden="true" />
           </Link>
         </section>
       </main>
